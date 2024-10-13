@@ -10,7 +10,7 @@ public class Core : MonoBehaviour, ISelectable
 {
     [SerializeField] private Renderer _renderer;
     [SerializeField] private Rigidbody _rigidbody;
-    [SerializeField] private List<DataAppropriator> _appropriator = new();
+    [SerializeField] private List<DataAppropriator> _appropriators;
     [SerializeField] private float _speed;
 
     private Coroutine _coroutine;
@@ -77,7 +77,7 @@ public class Core : MonoBehaviour, ISelectable
 
     public void SetData(int value)
     {
-        DataAppropriator dataAppropriator = _appropriator.FirstOrDefault(i => i.Value == value);
+        DataAppropriator dataAppropriator = _appropriators.FirstOrDefault(i => i.Value == value);
 
         if (dataAppropriator != null)
             _renderer.material = dataAppropriator.Material;

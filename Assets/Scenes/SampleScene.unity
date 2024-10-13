@@ -274,7 +274,6 @@ GameObject:
   m_Component:
   - component: {fileID: 155366508}
   - component: {fileID: 155366509}
-  - component: {fileID: 155366510}
   m_Layer: 0
   m_Name: GameObject (4)
   m_TagString: Untagged
@@ -318,18 +317,6 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.014192173, y: 0.015151494, z: 0.011348763}
   m_Center: {x: 0.002657362, y: 0.0135702295, z: -0.008644927}
---- !u!114 &155366510
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 155366507}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b20d0a4fb77c5b54e8e4d2788d175bef, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &163774309 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: af9b7d12e66847a49b70a241359ebc12, type: 3}
@@ -372,7 +359,7 @@ MonoBehaviour:
   - {fileID: 1683869064}
   - {fileID: 1571150219}
   _positionFrontOfClip: {fileID: 1683869064}
-  _firstClipWall: {fileID: 155366510}
+  _firstClipWall: {fileID: 607006583}
 --- !u!4 &163774312 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: af9b7d12e66847a49b70a241359ebc12, type: 3}
@@ -720,6 +707,7 @@ GameObject:
   m_Component:
   - component: {fileID: 607006581}
   - component: {fileID: 607006582}
+  - component: {fileID: 607006583}
   m_Layer: 0
   m_Name: GameObject (7)
   m_TagString: Untagged
@@ -763,6 +751,18 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.016873311, y: 0.003091629, z: 0.14923781}
   m_Center: {x: 0.0027746437, y: 0.0075404397, z: -0.014785338}
+--- !u!114 &607006583
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 607006580}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b20d0a4fb77c5b54e8e4d2788d175bef, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &623007197
 GameObject:
   m_ObjectHideFlags: 0
@@ -1752,7 +1752,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _placeForSeat: {fileID: 34905526}
-  _cores: []
   _merger: {fileID: 1564445311}
 --- !u!4 &1564445307 stripped
 Transform:

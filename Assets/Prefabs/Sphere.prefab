@@ -121,7 +121,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _renderer: {fileID: 4937751756676574939}
   _rigidbody: {fileID: 6514500795114160893}
-  _appropriator:
+  _appropriators:
   - _material: {fileID: 2100000, guid: d8909d072c66c9146a98b37039c01270, type: 2}
     _value: 1
   - _material: {fileID: 2100000, guid: 801d91092c6d93d4abefff338f275513, type: 2}

@@ -1,7 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Drawing;
 using UnityEngine;
 using UnityEngine.SocialPlatforms.Impl;
+using static UnityEngine.UI.GridLayoutGroup;
 
 public class CoreMerger : MonoBehaviour
 {
@@ -9,6 +11,7 @@ public class CoreMerger : MonoBehaviour
     [SerializeField] private CoreSpawner _spawner;
     [SerializeField] private Transform _spawnPosition;
 
+    //private Core _currentCore;
     private int _greenCoreValue = 1;
     private int _blueCoreValue = 2;
     private int _redCoreValue = 3;
@@ -16,41 +19,65 @@ public class CoreMerger : MonoBehaviour
 
     public void Merge(List<Core> cores)
     {
+        Debug.Log("Зашел в метод Merge");
+        Debug.Log(cores.Count + " каунт коров");
+
+        foreach (Core core in cores)
+        {
+            Debug.Log(core.Value + " цвет шарa");
+        }
+
+        if (cores.Count < 2)
+        {
+            return;
+        }
+
+        while (CanMerge(cores, out int indexOne, out int indexTwo))
+        {
+            int color = -1;
+
+            if (cores[indexOne].Value == _greenCoreValue)
+            {
+                color = _blueCoreValue;
+            }
+            else if (cores[indexOne].Value == _blueCoreValue)
+            {
+                color = _redCoreValue;
+            }
+            else if (cores[indexOne].Value == _redCoreValue)
+            {
+                color = _yellowCoreValue;
+            }
+
+            DeleteCore(cores, cores[indexTwo]);
+            DeleteCore(cores, cores[indexOne]);
+
+            cores.Insert(indexOne, _spawner.Spawn(color, _spawnPosition.position));
+        }
+    }
+
+    private bool CanMerge(List<Core> cores, out int indexOne, out int indexTwo)
+    {
         for (int i = 0; i < cores.Count - 1; i++)
         {
             if (cores[i].Value == cores[i + 1].Value)
             {
-                if (cores[i].Value == _greenCoreValue)
-                {
-                    DestroyAndRemoveCore(cores);
-                    _clip.Add(_spawner.Spawn(_blueCoreValue, _spawnPosition.position));
-                }
-                else if (cores[i].Value == _blueCoreValue)
-                {
-                    DestroyAndRemoveCore(cores);
-                    _clip.Add(_spawner.Spawn(_redCoreValue, _spawnPosition.position));
-                }
-                else if (cores[i].Value == _redCoreValue)
-                {
-                    DestroyAndRemoveCore(cores);
-                    _clip.Add(_spawner.Spawn(_yellowCoreValue, _spawnPosition.position));
-                }
-                else if (cores[i].Value == _yellowCoreValue)
-                {
-                    DestroyAndRemoveCore(cores);
-                }
+                indexOne = i;
+                indexTwo = i + 1;
+
+                return true;
             }
         }
+
+        indexOne = 0;
+        indexTwo = 0;
+
+        return false;
     }
 
-    private void DestroyAndRemoveCore(List<Core> cores)
+    private void DeleteCore(List<Core> cores, Core core)
     {
-        for (int i = 0; i < cores.Count - 1; i++)
-        {
-            Destroy(cores[i].gameObject);
-            Destroy(cores[i + 1].gameObject);
-            cores.Remove(cores[i]);
-            cores.Remove(cores[i]);
-        }
+        cores.Remove(core);
+        Destroy(core.gameObject);
     }
 }

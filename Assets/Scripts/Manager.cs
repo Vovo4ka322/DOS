@@ -46,15 +46,15 @@ public class Manager : MonoBehaviour
 
             Core core = _cores[lineIndex].Dequeue();
 
+            Debug.Log(core.Value + " значение шара");
+
             Physics.IgnoreCollision(core.Collider, line.Collider);
 
             StartCoroutine(SpawnOneCore(lineIndex));
 
             core.Touched += GuideCore;
 
-            _firstClipWall.Finished += AddCoreInClip;
-
-            _clip.FindMatch();
+            _firstClipWall.CoreFinished += AddCoreInClip;
         }
     }
 
@@ -66,8 +66,10 @@ public class Manager : MonoBehaviour
 
     private void AddCoreInClip(Core core)
     {
+        _firstClipWall.CoreFinished -= AddCoreInClip;
         _clip.Add(core);
-        _firstClipWall.Finished -= AddCoreInClip;
+        Debug.Log(core.Value + " " + core + " Добавился в клип");
+        _clip.FindMatch();
     }
 
     private IEnumerator SpawnOneCore(int lineIndex)

@@ -8,9 +8,11 @@ public class CoreSpawner : MonoBehaviour
 
     public Core Spawn(int value, Vector3 position)
     {
-        _corePrefab.SetData(value);
+        Core core = CallIPrefab(position);
 
-        return CallIPrefab(position);
+        core.SetData(value);
+
+        return core;
     }
 
     public Core Spawn(Vector3 position) => CallIPrefab(position);
