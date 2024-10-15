@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 4937751756676574939}
   - component: {fileID: 3946297207111071744}
   - component: {fileID: 3532785268970604702}
-  - component: {fileID: 6514500795114160893}
+  - component: {fileID: -2715652292273348995}
   m_Layer: 0
   m_Name: Sphere
   m_TagString: Untagged
@@ -120,7 +120,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _renderer: {fileID: 4937751756676574939}
-  _rigidbody: {fileID: 6514500795114160893}
+  _rigidbody: {fileID: -2715652292273348995}
   _appropriators:
   - _material: {fileID: 2100000, guid: d8909d072c66c9146a98b37039c01270, type: 2}
     _value: 1
@@ -133,7 +133,7 @@ MonoBehaviour:
   _speed: 0.2
   <Collider>k__BackingField: {fileID: 3946297207111071744}
   <Value>k__BackingField: 0
---- !u!54 &6514500795114160893
+--- !u!54 &-2715652292273348995
 Rigidbody:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

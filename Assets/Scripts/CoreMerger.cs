@@ -11,7 +11,6 @@ public class CoreMerger : MonoBehaviour
     [SerializeField] private CoreSpawner _spawner;
     [SerializeField] private Transform _spawnPosition;
 
-    //private Core _currentCore;
     private int _greenCoreValue = 1;
     private int _blueCoreValue = 2;
     private int _redCoreValue = 3;
@@ -19,14 +18,6 @@ public class CoreMerger : MonoBehaviour
 
     public void Merge(List<Core> cores)
     {
-        Debug.Log("Зашел в метод Merge");
-        Debug.Log(cores.Count + " каунт коров");
-
-        foreach (Core core in cores)
-        {
-            Debug.Log(core.Value + " цвет шарa");
-        }
-
         if (cores.Count < 2)
         {
             return;
@@ -53,6 +44,11 @@ public class CoreMerger : MonoBehaviour
             DeleteCore(cores, cores[indexOne]);
 
             cores.Insert(indexOne, _spawner.Spawn(color, _spawnPosition.position));
+
+            for (int i = 0; i < cores.Count; i++)
+            {
+                cores[i].RemoveRigidbody();
+            }
         }
     }
 

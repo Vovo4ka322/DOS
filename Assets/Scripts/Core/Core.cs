@@ -38,6 +38,26 @@ public class Core : MonoBehaviour, ISelectable
         }
     }
 
+    public void Move(List<Transform> positionsToMove, int currentPoint, Vector3 lastPosition)
+    {
+        _coroutine = StartCoroutine(MoveToTarget(positionsToMove, currentPoint, lastPosition));
+    }
+
+    public void MoveIntoClip(Vector3 position)
+    {
+        transform.Translate(position);
+    }
+
+    public void SetData(int value)
+    {
+        DataAppropriator dataAppropriator = _appropriators.FirstOrDefault(i => i.Value == value);
+
+        if (dataAppropriator != null)
+            _renderer.material = dataAppropriator.Material;
+    }
+
+    public void RemoveRigidbody() => Destroy(_rigidbody);
+
     private IEnumerator MoveToTarget(List<Transform> positionsToMove, int currentPoint, Vector3 lastPosition)
     {
         for (float t = 0; t <= 1; t += Time.deltaTime * _speed)
@@ -63,23 +83,5 @@ public class Core : MonoBehaviour, ISelectable
 
             yield return null;
         }
-    }
-
-    public void Move(List<Transform> positionsToMove, int currentPoint, Vector3 lastPosition)
-    {
-        _coroutine = StartCoroutine(MoveToTarget(positionsToMove, currentPoint, lastPosition));
-    }
-
-    public void MoveIntoClip(Vector3 position)
-    {
-        transform.Translate(position);
-    }
-
-    public void SetData(int value)
-    {
-        DataAppropriator dataAppropriator = _appropriators.FirstOrDefault(i => i.Value == value);
-
-        if (dataAppropriator != null)
-            _renderer.material = dataAppropriator.Material;
     }
 }

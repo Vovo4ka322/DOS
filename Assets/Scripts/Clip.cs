@@ -5,35 +5,38 @@ using UnityEngine;
 
 public class Clip : MonoBehaviour
 {
-    [SerializeField] private Transform _placeForSeat;
     [SerializeField] private CoreMerger _merger;
     [SerializeField] private List<Core> _cores;
-
-    //private Core _core;
+    [SerializeField] private List<Transform> _placesForSeat;
 
     private int _maxQuantity = 6;
 
     public void Add(Core core)
     {
         _cores.Add(core);
+        Add();
     }
-
-    //public void Add(Core core)
-    //{
-    //    _core = core;
-    //}
 
     public void FindMatch()
     {
         _merger.Merge(_cores);
+        Add();
     }
-
-    //public void FindMatch()
-    //{
-    //    _merger.Merge(_core);
-    //}
 
     public bool IsFullQuantity => _cores.Count == _maxQuantity;
 
-    public Transform GetSeatPlace => _placeForSeat;
+    private void Add()
+    {
+        List<Transform> places = new(_cores.Count);
+
+        for (int i = 0; i < _cores.Count; i++)
+        {
+            places.Add(_placesForSeat[i]);
+        }
+
+        for (int i = 0; i < _cores.Count; i++)
+        {
+            _cores[i].transform.position = places[places.Count - 1 - i].transform.position;
+        }
+    }
 }

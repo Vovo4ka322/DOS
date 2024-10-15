@@ -8,12 +8,8 @@ public class Manager : MonoBehaviour
     [SerializeField] private Clip _clip;
     [SerializeField] private CoreSpawner _spawner;
     [SerializeField] private List<Line> _placesForSeat;
-    [SerializeField] private List<Transform> _positionsToMove;
-    [SerializeField] private Transform _positionFrontOfClip;
-    [SerializeField] private FirstClipWall _firstClipWall;
 
     private List<Queue<Core>> _cores = new();
-    private int _currentPoint = 0;
 
     private void Awake()
     {
@@ -46,30 +42,16 @@ public class Manager : MonoBehaviour
 
             Core core = _cores[lineIndex].Dequeue();
 
-            Debug.Log(core.Value + " значение шара");
-
             Physics.IgnoreCollision(core.Collider, line.Collider);
+
+            core.RemoveRigidbody();
 
             StartCoroutine(SpawnOneCore(lineIndex));
 
-            core.Touched += GuideCore;
+            _clip.Add(core);
 
-            _firstClipWall.CoreFinished += AddCoreInClip;
+            _clip.FindMatch();
         }
-    }
-
-    private void GuideCore(Core core)
-    {
-        core.Move(_positionsToMove, _currentPoint, _clip.GetSeatPlace.position);
-        core.Touched -= GuideCore;
-    }
-
-    private void AddCoreInClip(Core core)
-    {
-        _firstClipWall.CoreFinished -= AddCoreInClip;
-        _clip.Add(core);
-        Debug.Log(core.Value + " " + core + " Добавился в клип");
-        _clip.FindMatch();
     }
 
     private IEnumerator SpawnOneCore(int lineIndex)
