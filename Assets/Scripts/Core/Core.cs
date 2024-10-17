@@ -22,21 +22,11 @@ public class Core : MonoBehaviour
 
     public int Damage => _damage;
 
-    public event Action<Core> Touched;
-
     private void Awake()
     {
         Value = UnityEngine.Random.Range(_minValue, _maxValue + 1);
 
         SetData(Value);
-    }
-
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.gameObject.TryGetComponent(out CoreMover _))
-        {
-            Touched?.Invoke(this);
-        }
     }
 
     public void Move(Vector3 target)
@@ -47,11 +37,6 @@ public class Core : MonoBehaviour
     public void Move(List<Transform> positionsToMove, int currentPoint, Vector3 lastPosition)
     {
         _coroutine = StartCoroutine(MoveToTarget(positionsToMove, currentPoint, lastPosition));
-    }
-
-    public void MoveIntoClip(Vector3 position)
-    {
-        transform.Translate(position);
     }
 
     public void SetData(int value)

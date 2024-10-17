@@ -33,6 +33,8 @@ public class Clip : MonoBehaviour
         //    _merger.DeleteCore(_cores, _cores[0]);
     }
 
+
+
     private void Add()
     {
         List<Transform> places = new(_cores.Count);
