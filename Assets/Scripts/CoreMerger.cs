@@ -1,9 +1,5 @@
-using System.Collections;
 using System.Collections.Generic;
-using System.Drawing;
 using UnityEngine;
-using UnityEngine.SocialPlatforms.Impl;
-using static UnityEngine.UI.GridLayoutGroup;
 
 public class CoreMerger : MonoBehaviour
 {
@@ -52,6 +48,12 @@ public class CoreMerger : MonoBehaviour
         }
     }
 
+    public void DeleteCore(List<Core> cores, Core core)
+    {
+        cores.Remove(core);
+        Destroy(core.gameObject);
+    }
+
     private bool CanMerge(List<Core> cores, out int indexOne, out int indexTwo)
     {
         for (int i = 0; i < cores.Count - 1; i++)
@@ -69,11 +71,5 @@ public class CoreMerger : MonoBehaviour
         indexTwo = 0;
 
         return false;
-    }
-
-    private void DeleteCore(List<Core> cores, Core core)
-    {
-        cores.Remove(core);
-        Destroy(core.gameObject);
     }
 }

@@ -2,16 +2,15 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using Unity.VisualScripting;
 using UnityEngine;
-using static UnityEngine.GraphicsBuffer;
 
-public class Core : MonoBehaviour, ISelectable
+public class Core : MonoBehaviour
 {
     [SerializeField] private Renderer _renderer;
     [SerializeField] private Rigidbody _rigidbody;
-    [SerializeField] private List<DataAppropriator> _appropriators;
+    [SerializeField] private List<CoreDataAppropriator> _appropriators;
     [SerializeField] private float _speed;
+    [SerializeField] private int _damage;
 
     private Coroutine _coroutine;
     private int _minValue = 1;
@@ -20,6 +19,8 @@ public class Core : MonoBehaviour, ISelectable
     [field: SerializeField] public Collider Collider { get; private set; }
 
     [field: SerializeField] public int Value { get; private set; }
+
+    public int Damage => _damage;
 
     public event Action<Core> Touched;
 
@@ -38,6 +39,11 @@ public class Core : MonoBehaviour, ISelectable
         }
     }
 
+    public void Move(Vector3 target)
+    {
+        transform.position = target;
+    }
+     
     public void Move(List<Transform> positionsToMove, int currentPoint, Vector3 lastPosition)
     {
         _coroutine = StartCoroutine(MoveToTarget(positionsToMove, currentPoint, lastPosition));
@@ -50,10 +56,13 @@ public class Core : MonoBehaviour, ISelectable
 
     public void SetData(int value)
     {
-        DataAppropriator dataAppropriator = _appropriators.FirstOrDefault(i => i.Value == value);
+        CoreDataAppropriator dataAppropriator = _appropriators.FirstOrDefault(i => i.Value == value);
 
         if (dataAppropriator != null)
+        {
             _renderer.material = dataAppropriator.Material;
+            _damage = dataAppropriator.Damage;
+        }
     }
 
     public void RemoveRigidbody() => Destroy(_rigidbody);

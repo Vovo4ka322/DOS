@@ -124,13 +124,18 @@ MonoBehaviour:
   _appropriators:
   - _material: {fileID: 2100000, guid: d8909d072c66c9146a98b37039c01270, type: 2}
     _value: 1
+    _damage: 2
   - _material: {fileID: 2100000, guid: 801d91092c6d93d4abefff338f275513, type: 2}
     _value: 2
+    _damage: 4
   - _material: {fileID: 2100000, guid: 1e64ed11050fb944ebb1c90784aaaf97, type: 2}
     _value: 3
+    _damage: 8
   - _material: {fileID: 2100000, guid: 3d985e75b0856e74ab5ee8adacbdc562, type: 2}
     _value: 4
+    _damage: 16
   _speed: 0.2
+  _damage: 0
   <Collider>k__BackingField: {fileID: 3946297207111071744}
   <Value>k__BackingField: 0
 --- !u!54 &-2715652292273348995

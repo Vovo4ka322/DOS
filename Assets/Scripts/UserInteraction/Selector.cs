@@ -3,11 +3,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CoreSelector : MonoBehaviour
+public class Selector : MonoBehaviour
 {
     private int _selectedObject = 0;
 
-    public event Action<Line> Selected;
+    public event Action<Line> CoreSelected;
+    public event Action ButtonSelected;
 
     private void Update()
     {
@@ -24,7 +25,11 @@ public class CoreSelector : MonoBehaviour
             {
                 if(raycastHit.collider.TryGetComponent(out Line component))
                 {
-                    Selected?.Invoke(component);
+                    CoreSelected?.Invoke(component);
+                }
+                else if(raycastHit.collider.TryGetComponent(out AttackButton _))
+                {
+                    ButtonSelected?.Invoke();
                 }
             }
         }
