@@ -10,6 +10,11 @@ public class Enemy : MonoBehaviour
 
     public Transform Position => transform;
 
+    private void Update()
+    {
+        _enemyMovement.Move(_gun.transform);
+    }
+
     private void OnCollisionEnter(Collision collision)
     {
         Debug.Log("work");
@@ -22,10 +27,5 @@ public class Enemy : MonoBehaviour
             if(_health.IsDead)
                 Destroy(gameObject);
         }
-    }
-
-    private void Update()
-    {
-        _enemyMovement.Move(_gun.transform);
     }
 }

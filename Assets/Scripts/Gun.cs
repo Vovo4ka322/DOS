@@ -12,9 +12,9 @@ public class Gun : MonoBehaviour
 
     public void Shoot()
     {
-        for (int i = 0; i < _enemies.Count; i++)
-        {
-            _clip.RemoveFirstElement(_enemies[i].transform.position);
-        }
+        //for (int i = 0; i < _enemies.Count; i++)
+        //{
+        //    _clip.RemoveFirstElement(_enemies[i].transform.position);
+        //}
     }
 }

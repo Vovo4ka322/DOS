@@ -34,10 +34,10 @@ public class Core : MonoBehaviour
         transform.position = target;
     }
      
-    public void Move(List<Transform> positionsToMove, int currentPoint, Vector3 lastPosition)
-    {
-        _coroutine = StartCoroutine(MoveToTarget(positionsToMove, currentPoint, lastPosition));
-    }
+    //public void Move(List<Transform> positionsToMove, int currentPoint, Vector3 lastPosition)
+    //{
+    //    _coroutine = StartCoroutine(MoveToTarget(positionsToMove, currentPoint, lastPosition));
+    //}
 
     public void SetData(int value)
     {
@@ -52,30 +52,30 @@ public class Core : MonoBehaviour
 
     public void RemoveRigidbody() => Destroy(_rigidbody);
 
-    private IEnumerator MoveToTarget(List<Transform> positionsToMove, int currentPoint, Vector3 lastPosition)
-    {
-        for (float t = 0; t <= 1; t += Time.deltaTime * _speed)
-        {
-            transform.position = Vector3.Lerp(transform.position, positionsToMove[currentPoint].position, t);
+    //private IEnumerator MoveToTarget(List<Transform> positionsToMove, int currentPoint, Vector3 lastPosition)
+    //{
+    //    for (float t = 0; t <= 1; t += Time.deltaTime * _speed)
+    //    {
+    //        transform.position = Vector3.Lerp(transform.position, positionsToMove[currentPoint].position, t);
 
-            Vector3 currentPosition = positionsToMove[currentPoint].position;
+    //        Vector3 currentPosition = positionsToMove[currentPoint].position;
 
-            if (Vector3.Distance(transform.position, currentPosition) <= 0.01f)
-            {
-                currentPoint++;
-                if (currentPoint >= positionsToMove.Count)
-                {
-                    Collider.enabled = false;
-                    transform.position = lastPosition;
+    //        if (Vector3.Distance(transform.position, currentPosition) <= 0.01f)
+    //        {
+    //            currentPoint++;
+    //            if (currentPoint >= positionsToMove.Count)
+    //            {
+    //                Collider.enabled = false;
+    //                transform.position = lastPosition;
 
-                    if (_coroutine != null)
-                        StopCoroutine(_coroutine);
+    //                if (_coroutine != null)
+    //                    StopCoroutine(_coroutine);
 
-                    Collider.enabled = true;
-                }
-            }
+    //                Collider.enabled = true;
+    //            }
+    //        }
 
-            yield return null;
-        }
-    }
+    //        yield return null;
+    //    }
+    //}
 }

@@ -8,6 +8,7 @@ public class UserInputHandler : MonoBehaviour
     [SerializeField] private Clip _clip;
     [SerializeField] private CoreFactory _factory;
     [SerializeField] private Gun _gun;
+    [SerializeField] private AttackButton _attackButton;
 
     private Coroutine _coroutine;
 
@@ -45,6 +46,7 @@ public class UserInputHandler : MonoBehaviour
 
     private void OnShoot()
     {
+        _attackButton.PlayAnimation();
         _gun.Shoot();
     }
 }

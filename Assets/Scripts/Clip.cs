@@ -27,7 +27,9 @@ public class Clip : MonoBehaviour
 
     public void RemoveFirstElement(Vector3 target)
     {
-        _cores[0].Move(target);
+        if (_cores.Count > 0)
+            _cores[0].Move(target);
+
 
         //if (_cores.Count > 0)
         //    _merger.DeleteCore(_cores, _cores[0]);
